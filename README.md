@@ -13,7 +13,7 @@ allprojects {
 }
 
 dependencies {
-	 implementation 'com.github.vyve:PermissionX:1.0.0'
+	 implementation 'com.github.vyve:PermissionX:1.0.1'
 }
 ```
 
