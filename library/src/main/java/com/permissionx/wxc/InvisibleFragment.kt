@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
  */
 
 //typealias 用于给任意类型置顶一个别名
-typealias PermissionCallback = (Boolean, List<String>) -> Unit
+//typealias PermissionCallback = (Boolean, List<String>) -> Unit
+
+//用于支持可阅读性的java接口回调
+typealias PermissionCallback = IPermissionXCallBack
 
 class InvisibleFragment : Fragment() {
 
-    private var callback: PermissionCallback? = null
+    private var callback: IPermissionXCallBack? = null
 
     //vararg 关键字用于接收可变长度的permissions参数列表
     fun requestNow(cb: PermissionCallback, vararg permissions: String) {
@@ -39,7 +42,8 @@ class InvisibleFragment : Fragment() {
             val allGranted = deniedList.isEmpty()
             //callback 对运行时权限的申请结果进行回调
             callback?.let {
-                it(allGranted, deniedList)
+//                it(allGranted, deniedList)
+                it.callBack(allGranted,deniedList)
             }
         }
     }

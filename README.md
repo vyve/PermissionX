@@ -17,14 +17,31 @@ dependencies {
 }
 ```
 
-```kotlin
- PermissionX.request(
-                this, Manifest.permission.CALL_PHONE, Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) { granted, deniedList ->
-                if (granted) {
-                    callPhone()
-                } else {
-                    Toast.makeText(this, "You denied $deniedList", Toast.LENGTH_SHORT).show()
-                }
-            }
+```
+kotlin
+PermissionX.request(
+                 this, Manifest.permission.CALL_PHONE, Manifest.permission.READ_EXTERNAL_STORAGE,
+                 Manifest.permission.WRITE_EXTERNAL_STORAGE,callback = (object :IPermissionXCallBack{
+                     override fun callBack(granted: Boolean, deniedList: List<String>) {
+                         if (granted) {
+                             callPhone()
+                         } else {
+                             Toast.makeText(this@MainActivity, "You denied $deniedList", Toast.LENGTH_SHORT).show()
+                         }
+                     }
+                 }))
+```
+
+```
+java
+PermissionX.INSTANCE.request(MainJavaActivity.this, new String[]{Manifest.permission.CALL_PHONE}, new IPermissionXCallBack() {
+                    @Override
+                    public void callBack(boolean granted, @NotNull List<String> deniedList) {
+                        if (granted) {
+                            callPhone()
+                        } else {
+                            Toast.makeText(getApplicationContext(), "You denied", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+```
