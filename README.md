@@ -45,3 +45,12 @@ PermissionX.INSTANCE.request(MainJavaActivity.this, new String[]{Manifest.permis
                     }
                 });
 ```
+
+如果遇到
+```
+java.lang.NoClassDefFoundError: Failed resolution of: Lkotlin/jvm/internal/Intrinsics;
+```
+在app build.gradle 添加如下依赖
+```
+implementation 'com.mapzen:on-the-road:1.3.1'
+```

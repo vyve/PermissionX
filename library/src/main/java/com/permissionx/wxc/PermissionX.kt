@@ -10,7 +10,7 @@ object PermissionX {
 
     private const val TAG = "InvisibleFragment"
 
-    fun request(activity: AppCompatActivity,vararg permissions:String,callback: IPermissionXCallBack){
+    fun request(activity: AppCompatActivity,vararg permissions:String,callback: PermissionCallback){
         val fragmentManager = activity.supportFragmentManager
 
         val exitedFragment = fragmentManager.findFragmentByTag(TAG)
